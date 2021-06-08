@@ -1,17 +1,9 @@
 
-import { Number } from '@svgdotjs/svg.js';
 import { render } from '@testing-library/react';
 import React, { useState } from 'react';
 import './App.css';
 
 
-
-  
-
-
-
-
-  
 
 function App() {
 
@@ -20,23 +12,14 @@ function App() {
 
   const [resultat,setMyResult]=useState({
     Affichage:0,
-    currentValue:0,
+    currentValue:"",
     oldValue:0,
     myOperator:""})
  
   const myTableOperateur = myOperatorList.map((operator)=>(<button onClick={()=>setMyResult({...resultat,myOperator:operator,oldValue:resultat.currentValue,currentValue:""})} key={operator}>{operator}</button>))
-  const myTableNumber= myNumber.map((element)=>(<button onClick={()=>setMyResult({...resultat,currentValue:(resultat.currentValue+element),Affichage:(resultat.currentValue+element)})} key={element}>{element}</button>))
-  const myEqual = <button id="Equal" onClick={()=>setMyResult({...resultat,Affichage:resultat.oldValue+resultat.currentValue})}>=</button>
+  const myTableNumber= myNumber.map((element)=>(<button onClick={()=>setMyResult({...resultat,currentValue:(resultat.currentValue+element.toString()),Affichage:(resultat.currentValue+element)})} key={element}>{element}</button>))
+  const myEqual = <button id="Equal" onClick={()=>setMyResult({...resultat,Affichage:Number(resultat.oldValue)+Number(resultat.currentValue)})}>=</button>
   
-  
-
-
-
-
-
-  
-  
-
   
   
   return (
