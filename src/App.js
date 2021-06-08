@@ -13,13 +13,59 @@ function App() {
   const [resultat,setMyResult]=useState({
     Affichage:0,
     currentValue:"",
-    oldValue:0,
+    oldValue:"",
     myOperator:""})
  
   const myTableOperateur = myOperatorList.map((operator)=>(<button onClick={()=>setMyResult({...resultat,myOperator:operator,oldValue:resultat.currentValue,currentValue:""})} key={operator}>{operator}</button>))
   const myTableNumber= myNumber.map((element)=>(<button onClick={()=>setMyResult({...resultat,currentValue:(resultat.currentValue+element.toString()),Affichage:(resultat.currentValue+element)})} key={element}>{element}</button>))
-  const myEqual = <button id="Equal" onClick={()=>setMyResult({...resultat,Affichage:Number(resultat.oldValue)+Number(resultat.currentValue)})}>=</button>
+  const myEqual = <button id="Equal" onClick={()=>{checkMyOperator()}}>=</button>
   
+  const [myResultat,checkMyFunction]= useState(resultat)
+  function checkMyOperator() {
+    console.log(resultat.myOperator)
+    if (resultat.myOperator!==""&&resultat.oldValue!==""&&resultat.currentValue!=="") {
+     if (resultat.myOperator==="+") {
+      setMyResult({
+        Affichage:Number(resultat.oldValue)+Number(resultat.currentValue),
+        currentValue:"",
+        oldValue:"",
+        myOperator:""}
+
+      )
+     }
+     if (resultat.myOperator==="X") {
+      setMyResult({
+        Affichage:Number(resultat.oldValue)*Number(resultat.currentValue),
+        currentValue:"",
+        oldValue:"",
+        myOperator:""}
+
+      )
+     }  
+     if (resultat.myOperator==="-") {
+      setMyResult({
+        Affichage:Number(resultat.oldValue)-Number(resultat.currentValue),
+        currentValue:"",
+        oldValue:"",
+        myOperator:""}
+
+      )
+     } 
+     if (resultat.myOperator==="/") {
+      setMyResult({
+        Affichage:Number(resultat.oldValue)/Number(resultat.currentValue),
+        currentValue:"",
+        oldValue:"",
+        myOperator:""}
+
+      )
+     } 
+      
+    }
+
+  
+    
+  }
   
   
   return (
